@@ -2,15 +2,13 @@ require("dotenv").config();
 require("./src/utils/mongo");
 const express = require("express");
 const cors = require("cors");
-const sendUrl = require("./src/routes/shortUrl.routes");
-const getUrl = require("./src/routes/getUrl.routes");
+const urlRoutes = require("./src/routes/url.Routes");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(sendUrl);
-app.use(getUrl);
+app.use(urlRoutes);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
