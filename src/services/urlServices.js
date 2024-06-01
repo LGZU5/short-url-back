@@ -10,16 +10,14 @@ exports.createUrl = async (urlData) => {
   }
 };
 
-exports.getUrl = async (url) => {
+exports.getUrl = async (urlShort) => {
   try {
-    const urlDoc = await UrlModel.findOne({ url });
+    const urlDoc = await UrlModel.findOne({ urlShort: urlShort });
     if (!urlDoc) {
-      console.error("URL not found");
       throw new Error("URL not found");
     }
     return urlDoc;
   } catch (error) {
-    console.error(`Error getting URL: ${error.message}`);
     throw new Error(`Error getting URL: ${error.message}`);
   }
 };
