@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
 
+// Definir el esquema de URL
 const urlSchema = new Schema({
   urlOriginal: {
     type: String,
@@ -10,12 +11,9 @@ const urlSchema = new Schema({
   },
   urlShort: {
     type: String,
+    unique: true,
+    default: () => uuidv4().substring(0, 5), // Generar un valor predeterminado para urlShort
   },
-});
-
-urlSchema.pre("save", function (next) {
-  this.urlShort = uuidv4().substring(0, 5);
-  next();
 });
 
 const Url = model("Urls", urlSchema);
