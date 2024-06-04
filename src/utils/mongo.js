@@ -1,16 +1,14 @@
-// Conexión a la base de datos
 const mongoose = require("mongoose");
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wpyilr4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
-// URL de conexión a tu base de datos
-const dbURL = process.env.MONGO_DB_URL;
+async function connect() {
+  try {
+    await mongoose.connect(uri);
+    console.log("You successfully connected to MongoDB!");
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+}
 
-// Conexión a la base de datos
-mongoose.connect(dbURL);
-
-mongoose.connection.on("connected", () => {
-  console.log("Connected to MongoDB");
-});
-
-mongoose.connection.on("error", (error) => {
-  console.log("Error connecting to MongoDB", error);
-});
+module.exports = { connect };

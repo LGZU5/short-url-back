@@ -12,8 +12,18 @@ const urlSchema = new Schema({
   urlShort: {
     type: String,
     unique: true,
-    default: () => uuidv4().substring(0, 5), // Generar un valor predeterminado para urlShort
   },
+});
+
+urlSchema.pre("save", async function (next) {
+  let urlShort;
+  let urlExists;
+  do {
+    urlShort = uuidv4().substring(0, 5);
+    urlExists = await this.constructor.findOne({ urlShort });
+  } while (urlExists);
+  this.urlShort = urlShort;
+  next();
 });
 
 const Url = model("Urls", urlSchema);
