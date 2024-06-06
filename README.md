@@ -1,7 +1,7 @@
 
 # SHORTENER URL
 
-A modern URL shortener with an intuitive user interface that allows users to efficiently generate, manage, and share short links. Built with React and styled with Tailwind CSS, this frontend project ensures a smooth and attractive user experience.
+A modern URL shortener with an intuitive user interface that allows users to generate, manage, and share short links efficiently. Built with Node.js and Express, this backend project demonstrates the use of a simple api
 
 
 ## Run Locally
